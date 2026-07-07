@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Outline for General Contractor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .main-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .measurements-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .measurements-table th,
+        .measurements-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .measurements-table th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .measurements-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .measurements-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Toggle Button */
+        .toggle-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.01);
+        }
+
+        .toggle-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn.active svg {
+            transform: rotate(180deg);
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out, margin 0.5s ease;
+            opacity: 0;
+        }
+
+        .gallery-container.open {
+            max-height: 2000px; /* Arbitrary large number for transition */
+            opacity: 1;
+            margin-top: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Utility classes */
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .main-image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Project Overview</h1>
+        <p class="subtitle">Prepared for the General Contractor</p>
+    </header>
+
+    <!-- Main Project View -->
+    <div class="card">
+        <h2>The Vision</h2>
+        
+        <!-- Main visible image -->
+        <div class="main-image-container">
+            <img src="assets/images/main.jpg" alt="Main area to be renovated" />
+        </div>
+
+        <div class="description">
+            <p class="mb-4">
+                <strong>Project Goal:</strong> Complete renovation of the living and kitchen area to create an open-concept space. 
+            </p>
+            <p>
+                <strong>Key Requirements:</strong>
+                <ul>
+                    <li>Demolition of the non-load-bearing wall between kitchen and living room.</li>
+                    <li>Installation of new hardwood flooring throughout.</li>
+                    <li>Update electrical and lighting fixtures (recessed lighting requested).</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
+    <!-- Measurements & Details -->
+    <div class="card">
+        <h2>Measurements & Specs</h2>
+        <p class="text-muted mb-4">Initial measurements to help estimate materials and scope. Please verify on site.</p>
+        
+        <div style="overflow-x: auto;">
+            <table class="measurements-table">
+                <thead>
+                    <tr>
+                        <th>Area / Element</th>
+                        <th>Dimensions</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Living Room Floor</td>
+                        <td>15' x 20' (300 sq ft)</td>
+                        <td>Current flooring: carpet over plywood.</td>
+                    </tr>
+                    <tr>
+                        <td>Kitchen Floor</td>
+                        <td>12' x 15' (180 sq ft)</td>
+                        <td>Current flooring: ceramic tile.</td>
+                    </tr>
+                    <tr>
+                        <td>Wall to Remove</td>
+                        <td>12' long x 9' high</td>
+                        <td>Contains two electrical outlets. No plumbing expected.</td>
+                    </tr>
+                    <tr>
+                        <td>Ceiling Height</td>
+                        <td>9'</td>
+                        <td>Drywall ceiling, popcorn texture needs removal.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Additional Images Section -->
+    <div class="card">
+        <h2>Additional Context</h2>
+        <p>Click below to view detailed photos of existing conditions and inspiration references.</p>
+        
+        <button class="toggle-btn" id="toggleGalleryBtn" aria-expanded="false" aria-controls="galleryContainer">
+            <span>View Additional Photos</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
+
+        <div class="gallery-container" id="galleryContainer">
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <img src="assets/images/detail1.jpg" alt="Detail view of damaged wall" loading="lazy"/>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <img src="assets/images/detail2.jpg" alt="Blueprint sketch" loading="lazy"/>
+                </div>
+                <!-- Add more items as needed -->
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); text-align: center;">
+                Click on the photos to view them in detail or save them.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleGalleryBtn');
+        const galleryContainer = document.getElementById('galleryContainer');
+
+        toggleBtn.addEventListener('click', () => {
+            const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+            
+            if (isExpanded) {
+                // Close
+                galleryContainer.classList.remove('open');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                toggleBtn.querySelector('span').textContent = 'View Additional Photos';
+                toggleBtn.classList.remove('active');
+            } else {
+                // Open
+                galleryContainer.classList.add('open');
+                toggleBtn.setAttribute('aria-expanded', 'true');
+                toggleBtn.querySelector('span').textContent = 'Hide Photos';
+                toggleBtn.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
