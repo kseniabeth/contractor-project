@@ -279,6 +279,34 @@
             }
         }
 
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+
+        .clickable-img {
+            cursor: pointer;
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 1rem;
@@ -479,6 +507,30 @@
                 toggleBtn.classList.add('active');
             }
         });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const allImages = document.querySelectorAll('.main-image-container img, .gallery-item img');
+
+        allImages.forEach(img => {
+            img.classList.add('clickable-img');
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.style.display = 'none';
+            }
+        });
     </script>
+
+    <!-- Lightbox Element -->
+    <div id="lightbox">
+        <img src="" alt="Full screen image" id="lightbox-img" />
+    </div>
 </body>
 </html>
