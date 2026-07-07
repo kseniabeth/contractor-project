@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Outline for General Contractor</title>
+    <title>Bathroom Renovation Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,9 @@
             --border-color: #e2e8f0;
             --border-radius: 12px;
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --warning-bg: #fffbeb;
+            --warning-border: #fef3c7;
+            --warning-text: #b45309;
         }
 
         * {
@@ -56,6 +59,17 @@
             font-weight: 300;
         }
 
+        .alert {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: var(--warning-text);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
         .card {
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
@@ -88,24 +102,45 @@
             border-radius: 2px;
         }
 
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
         .main-image-container {
             width: 100%;
-            height: 400px;
+            height: auto;
+            max-height: 500px;
             border-radius: var(--border-radius);
             overflow: hidden;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .main-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.5s ease;
         }
 
         .main-image-container:hover img {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .description {
@@ -182,7 +217,7 @@
         }
 
         .gallery-container.open {
-            max-height: 2000px; /* Arbitrary large number for transition */
+            max-height: 3000px; /* Arbitrary large number for transition */
             opacity: 1;
             margin-top: 2rem;
         }
@@ -197,7 +232,11 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            background-color: #f1f5f9;
             aspect-ratio: 4/3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .gallery-item img {
@@ -212,9 +251,28 @@
             transform: scale(1.05);
         }
 
+        .gallery-caption {
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: #fff;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .item-wrapper {
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
         /* Utility classes */
         .mb-4 { margin-bottom: 1rem; }
         .mb-8 { margin-bottom: 2rem; }
+        .text-muted { color: var(--text-muted); }
         
         @keyframes fadeInDown {
             from {
@@ -235,7 +293,7 @@
                 font-size: 2rem;
             }
             .main-image-container {
-                height: 250px;
+                height: 300px;
             }
         }
     </style>
@@ -243,78 +301,120 @@
 <body>
 
     <header>
-        <h1>Project Overview</h1>
+        <h1>Bathroom Renovation Project</h1>
         <p class="subtitle">Prepared for the General Contractor</p>
     </header>
 
+    <div class="alert">
+        <strong>NOTE:</strong> Electrical work will be fully prepped ahead of time. Please do not include electrical rough-in/prep in your quote.<br>
+        <em>Proper renderings and layout drawings are pending.</em>
+    </div>
+
     <!-- Main Project View -->
     <div class="card">
-        <h2>The Vision</h2>
+        <h2>General Overview</h2>
         
         <!-- Main visible image -->
         <div class="main-image-container">
-            <img src="assets/images/main.jpg" alt="Main area to be renovated" />
+            <img src="assets/images/bath.png" alt="Main Bathroom View (Draft)" />
         </div>
 
         <div class="description">
             <p class="mb-4">
-                <strong>Project Goal:</strong> Complete renovation of the living and kitchen area to create an open-concept space. 
+                <strong>Project Goal:</strong> Bathroom renovation. Please note all measurements below are in inches.
             </p>
-            <p>
-                <strong>Key Requirements:</strong>
-                <ul>
-                    <li>Demolition of the non-load-bearing wall between kitchen and living room.</li>
-                    <li>Installation of new hardwood flooring throughout.</li>
-                    <li>Update electrical and lighting fixtures (recessed lighting requested).</li>
-                </ul>
-            </p>
+            
+            <h3>Shower Zone Layout</h3>
+            <ul>
+                <li><strong>Width:</strong> ~35 inches.</li>
+                <li><strong>Bench:</strong> No bench inside the shower.</li>
+                <li><strong>Shower Half-Wall:</strong> Must include a hidden niche from the inside, shower controls, and an access panel (hatch) from the outside.</li>
+            </ul>
+
+            <h3>Vanity / Sink Layout</h3>
+            <ul>
+                <li><strong>Width:</strong> 30 inch vanity.</li>
+                <li><strong>Gap:</strong> Leave a small gap between the vanity and the shower glass/wall (do not install flush against the glass).</li>
+            </ul>
+
+            <h3>Toilet</h3>
+            <ul>
+                <li>Wall-hung Toto toilet.</li>
+            </ul>
         </div>
     </div>
 
     <!-- Measurements & Details -->
     <div class="card">
-        <h2>Measurements & Specs</h2>
-        <p class="text-muted mb-4">Initial measurements to help estimate materials and scope. Please verify on site.</p>
+        <h2>Measurements & Proportions</h2>
         
         <div style="overflow-x: auto;">
             <table class="measurements-table">
                 <thead>
                     <tr>
                         <th>Area / Element</th>
-                        <th>Dimensions</th>
+                        <th>Dimensions (Inches)</th>
                         <th>Notes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Living Room Floor</td>
-                        <td>15' x 20' (300 sq ft)</td>
-                        <td>Current flooring: carpet over plywood.</td>
-                    </tr>
-                    <tr>
-                        <td>Kitchen Floor</td>
-                        <td>12' x 15' (180 sq ft)</td>
-                        <td>Current flooring: ceramic tile.</td>
-                    </tr>
-                    <tr>
-                        <td>Wall to Remove</td>
-                        <td>12' long x 9' high</td>
-                        <td>Contains two electrical outlets. No plumbing expected.</td>
+                        <td>Room Dimensions</td>
+                        <td>59.4" x 112.2"</td>
+                        <td>Approx. 1.51m x 2.85m</td>
                     </tr>
                     <tr>
                         <td>Ceiling Height</td>
-                        <td>9'</td>
-                        <td>Drywall ceiling, popcorn texture needs removal.</td>
+                        <td>98.4"</td>
+                        <td>Approx. 2.5m</td>
+                    </tr>
+                    <tr>
+                        <td>Shower width</td>
+                        <td>~35"</td>
+                        <td>Increased from original layout to give more shower space.</td>
+                    </tr>
+                    <tr>
+                        <td>Vanity width</td>
+                        <td>30"</td>
+                        <td>Reduced from original to accommodate larger shower.</td>
+                    </tr>
+                    <tr>
+                        <td>Total Wall to Door Casing</td>
+                        <td>40.9"</td>
+                        <td>Approx. 104cm. Used for Shower + Vanity + Gap.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <div class="card">
+        <h2>Pending Design Decisions (FYI for Materials)</h2>
+        <p class="text-muted mb-4">The following materials and finishes are currently being finalized. Please assume standard installation for these items for quoting purposes unless otherwise noted.</p>
+        
+        <ul>
+            <li><strong>Floor Tile:</strong> Terrazzo (Options: Levanzo Cream 16x16 or Turron Honed 24x24).</li>
+            <li><strong>Shower Curb / Threshold:</strong> Material TBD (Either matching terrazzo or simple white quartz).</li>
+            <li><strong>Shower Floor:</strong> Ceramic or porcelain mosaic (Options: Dark hexagon, light hexagon, or traditional white/black dots).</li>
+            <li><strong>Grout Color:</strong> TBD for walls and floors.</li>
+            <li><strong>Paint:</strong> Door and trim inside color TBD (Likely a shade of green to match tiles).</li>
+        </ul>
+
+        <h3>Lighting / Electrical Fixtures (To be installed)</h3>
+        <p class="text-muted">As noted, wiring/rough-in is prepped by others. Fixtures to be installed include:</p>
+        <ul>
+            <li>Solartube for natural light (if feasible).</li>
+            <li>LED spot integrated into the exhaust fan.</li>
+            <li>Wall Sconces.</li>
+            <li>Shower spot light.</li>
+            <li>LED strip under the vanity sink.</li>
+        </ul>
+    </div>
+
     <!-- Additional Images Section -->
     <div class="card">
-        <h2>Additional Context</h2>
-        <p>Click below to view detailed photos of existing conditions and inspiration references.</p>
+        <h2>Additional Reference Photos</h2>
+        <p>Click below to view other angles and reference materials (drafts).</p>
         
         <button class="toggle-btn" id="toggleGalleryBtn" aria-expanded="false" aria-controls="galleryContainer">
             <span>View Additional Photos</span>
@@ -326,17 +426,29 @@
         <div class="gallery-container" id="galleryContainer">
             <div class="gallery-grid">
                 <!-- Gallery Item 1 -->
-                <div class="gallery-item">
-                    <img src="assets/images/detail1.jpg" alt="Detail view of damaged wall" loading="lazy"/>
+                <div class="item-wrapper">
+                    <div class="gallery-item" style="aspect-ratio: auto; height: 250px;">
+                        <img src="assets/images/bath_2.png" alt="Bathroom View 2" loading="lazy" style="object-fit: contain;"/>
+                    </div>
+                    <div class="gallery-caption">Bathroom View 2</div>
                 </div>
                 <!-- Gallery Item 2 -->
-                <div class="gallery-item">
-                    <img src="assets/images/detail2.jpg" alt="Blueprint sketch" loading="lazy"/>
+                <div class="item-wrapper">
+                    <div class="gallery-item" style="aspect-ratio: auto; height: 250px;">
+                        <img src="assets/images/stone cap.png" alt="Stone Cap Reference" loading="lazy" style="object-fit: contain;"/>
+                    </div>
+                    <div class="gallery-caption">Stone Cap Reference</div>
                 </div>
-                <!-- Add more items as needed -->
+                <!-- Gallery Item 3 -->
+                <div class="item-wrapper">
+                    <div class="gallery-item" style="aspect-ratio: auto; height: 250px;">
+                        <img src="assets/images/basement washer dryer spot.jpg" alt="Washer/Dryer Spot" loading="lazy" style="object-fit: contain;"/>
+                    </div>
+                    <div class="gallery-caption">Washer/Dryer Spot</div>
+                </div>
             </div>
             <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); text-align: center;">
-                Click on the photos to view them in detail or save them.
+                Final layout drawings and renderings pending.
             </p>
         </div>
     </div>
